@@ -1,0 +1,54 @@
+
+.body {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px;;
+  justify-content: center;
+  background: lightblue;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 20px;
+  background: gold;
+}
+
+.sContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  background: green;
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0;
+  padding: 5em;
+
+  background: red;
+}
+
+.data{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: black dotted;
+  padding: 10em;
+  background: lightgray;
+}
+
+.formGroup {
+  display: flex;
+  justify-content: center;
+  background: cyan;
+}
+
+.form {
+  display: flex;
+  padding: 5px;
+  background: lightgray;
+}
