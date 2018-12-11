@@ -12,9 +12,11 @@ class App extends Component {
       username: "",
       platform: "steam",
       region: "NA",
-      gameMode: null,
-      tpp: false,
-      lifetimeStats: "no data"
+      gameMode: "fpp",
+      tpp: "solo",
+      selectedStats: {},
+      lifetimeStats: null,
+        
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,6 +24,10 @@ class App extends Component {
     this.getLifetimeStats = this.getLifetimeStats.bind(this);
     this.setlifetimeStats = this.setlifetimeStats.bind(this);
   };
+
+  /*********************************************************
+   * STAT TRANSFORMATION METHODS  
+   ********************************************************/
 
   getLifetimeStats = async (username, platform) => {
     const config = { 
@@ -41,6 +47,10 @@ class App extends Component {
     });
   };
 
+  /*********************************************************
+   * EVENT HANDLERS 
+   ********************************************************/
+
   handleSubmit = async (e) => {
     e.preventDefault();
     const username = this.state.username;
@@ -55,10 +65,11 @@ class App extends Component {
   handleChange = (e) => {
     this.setState({ 
       [e.target.id]: e.target.value
-    })
+    });
   };
 
   render() {
+    const { lifetimeStats, tpp, gameMode } = this.state;
 
     return ( 
       <div >
@@ -68,6 +79,11 @@ class App extends Component {
         / >
       <div >
         <StatsContainer 
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+          lifetimeStats={lifetimeStats}
+          tpp={tpp}
+          gameMode={gameMode}
         / >
       </div> 
       </div>

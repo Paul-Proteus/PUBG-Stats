@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-const Stats = ({ key, data }) => (
+const Stats = ({ stat }) => (
   <div>
-    {key} {data}
+    {stat}
   </div>
 );
 

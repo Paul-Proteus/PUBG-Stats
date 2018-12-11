@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
-import Stats from '../presentational/Stats.js';
-import styles from '../../../css/style.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import StatCategory from "../presentational/StatCategory.js"
+import Stats from "../presentational/Stats.js";
 
-const Dashboard = ({stats, data}) => ( 
-    
-  <div className={styles.stats}>
+class Dashboard extends Component {
+  constructor(props){
+    super(props);
+  };
+      
+  render() {
 
-    <div className={styles.data}>
-      Stats 1
-      <Stats
-        stats={stats}
-        data={data}
-      />
-    </div>
-    <div className={styles.data}>
-      Stats 2
-      <Stats
-        stats={stats}
-        data={data}
-      />
-    </div>
-    <div className={styles.data}>
-      Stats 3
-      <Stats
-        stats={stats}
-        data={data}
-      />
-    </div>
-  </div>
-);
+    const { selectedStats } = this.props;
+    console.log('Dashboard Stats:  ==> ', selectedStats);
 
+    const keys = Object.keys(selectedStats)
+    const values = Object.values(selectedStats)
+
+    return (
+      
+      <div>
+        <StatCategory
+          category={keys}
+        />
+        <Stats
+          stat={values}
+        />
+      </div>
+
+    )
+};
+}
 
 export default Dashboard;
