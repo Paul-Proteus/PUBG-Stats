@@ -54,7 +54,7 @@ class StatsContainer extends Component {
           <option value="squad">Squad</option>
         </select>
 
-        <div>
+        <div className={styles.stats}>
           <Dashboard
             selectedStats={selectedStats}
           />
@@ -63,9 +63,13 @@ class StatsContainer extends Component {
       </div>
     )
   } else {
-    return "NO DATA"
-  }
-} 
+      return (
+        <h1>
+          "NO DATA"
+        </h1>
+      )
+  };
+  };
 
 };
 
