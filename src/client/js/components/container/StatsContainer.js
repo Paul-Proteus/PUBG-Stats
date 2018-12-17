@@ -6,6 +6,9 @@ import Dashboard from './Dashboard.js';
 class StatsContainer extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      selectedStats: null
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,22 +23,38 @@ class StatsContainer extends Component {
   };
 
   parseLifetimeStats = (stats, gameMode, tpp) => {
-
-    const compiledGameMode = tpp + '-' + gameMode;
+    
+    console.log('tpp in parser -->', tpp);
+    if (tpp == "fpp") {
+    const compiledGameMode = gameMode + '-' + tpp;
     const selectedStats = stats[compiledGameMode];
     return selectedStats;
-
+    } else {
+      const selectedStats = stats[gameMode];
+      return selectedStats;
+    }
   };
+
+  componentDidUpdate(prevProps) {
+    console.log('prevProps -->', prevProps);
+    console.log('this.props -->', this.props);
+
+    if (prevProps.lifetimeStats !== this.props.lifetimeStats || prevProps.gameMode !== this.props.gameMode || prevProps.tpp !== this.props.tpp) {
+      const selectedStats = this.parseLifetimeStats(this.props.lifetimeStats, this.props.gameMode, this.props.tpp);
+
+      console.log('selected Stats -->', selectedStats);
+
+      this.setState({ 
+        selectedStats: selectedStats
+      });
+    };
+  }
 
   render(){
 
-    const { lifetimeStats, tpp, gameMode } = this.props;
+    const { selectedStats } = this.state;
     
-    // is this mutating state? against best practices?
-    if (lifetimeStats) {
-      // should this be moved to a lifecycle method???
-    const selectedStats = this.parseLifetimeStats(lifetimeStats, gameMode, tpp);
-    
+    if (selectedStats) {
     return (
       <div >
         <select
@@ -45,6 +64,7 @@ class StatsContainer extends Component {
         <option value="fpp">First Person</option>
         <option value="tpp">Third Person</option>
         </select>
+
         <select
           id="gameMode"
           onChange={this.handleChange}

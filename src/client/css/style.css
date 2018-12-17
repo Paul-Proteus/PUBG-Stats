@@ -29,15 +29,24 @@
   justify-content: space-between;
   margin: 0;
   padding: 1em;
-  background: red;
+  background: rgb(42, 76, 170);
 }
 
-.subStats {
+.subStatsContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   background: lightslategray;
+  padding: 15px;
+  margin: auto;
+}
+
+.subStats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;;
 }
 
 .data{
@@ -53,6 +62,16 @@
   display: flex;
   justify-content: center;
   background: cyan;
+}
+
+h1 {
+  margin: 2px;
+  font-family: "Garamond"; 
+}
+
+p {
+  margin: 2px;
+  font-family: "Futura";
 }
 
 .form {
@@ -77,6 +96,9 @@
 }
 
 .featureStats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   margin: auto;
 }
 
@@ -84,4 +106,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px black solid;
 }

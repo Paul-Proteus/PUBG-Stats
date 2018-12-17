@@ -12,8 +12,8 @@ class App extends Component {
       username: "",
       platform: "steam",
       region: "NA",
-      gameMode: "fpp",
-      tpp: "solo",
+      gameMode: "solo",
+      tpp: "fpp",
       selectedStats: {},
       lifetimeStats: null,
         
