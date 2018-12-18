@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import styles from '../../../css/style.css';
+// import styles from '../../../css/style.css';
 
-import Dashboard from './Dashboard.js';
+// import Dashboard from './Dashboard.js';
+import DashboardMUI from './DashboardMUI.js';
+
+
 
 class StatsContainer extends Component {
   constructor(props){
@@ -74,8 +77,10 @@ class StatsContainer extends Component {
           <option value="squad">Squad</option>
         </select>
 
-        <div className={styles.stats}>
-          <Dashboard
+        <div 
+        // className={styles.stats}
+        >
+          <DashboardMUI
             selectedStats={selectedStats}
           />
 
