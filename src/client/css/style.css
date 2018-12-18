@@ -1,26 +1,37 @@
 
-body {
+/* body {
   display: flex;
   flex-direction: column;
   margin: 0px 0px;;
   justify-content: center;
-  /* background: lightblue; */
+  /* background: lightblue; 
   font-family: roboto;
-}
+} */
 
-.select {
+/* .select {
   background: red;
   padding: 200px;
-}
+} */
 
-.container {
+/* .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 0;
-  /* padding: 20px; */
-  /* background: gold; */
-}
+  padding: 20px;
+  background: gold;
+} */
+
+.formControl {
+    margin: 0;
+    border: 0;
+    display: inline-flex;
+    padding: 0;
+    position: relative;
+    min-width: 0;
+    flex-direction: row;
+    vertical-align: top
+};
 
 .sContainer {
   display: flex;
@@ -80,7 +91,7 @@ body {
   font: inherit;
 }
 
-input {
+/* input {
   line-height: normal;
 }
 
@@ -90,7 +101,7 @@ h1 {
 
 p {
   margin: 2px;
-}
+} */
 
 .form {
   display: flex;

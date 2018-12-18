@@ -8,8 +8,35 @@ import InputLabel from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+// import styles from '../../../css/style.css';
 
-import styles from '../../../css/style.css';
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    "flex-direction": "row",
+    "justify-content": "center"
+  },
+  root: {
+    margin: 0,
+    border: 0,
+    display: "flex",
+    padding: 0,
+    position: "relative",
+    "min-width": 0,
+    "flex-direction": "row",
+    "vertical-align": "top",
+  },
+  textField: { 
+    width: 200,
+    margin: 0
+  },
+  btn: {
+    border: '1px solid #d1d1d1',
+    margin: 0
+  }
+})
+
+
 
 class FormContainer extends Component {
   constructor(props) {
@@ -28,14 +55,8 @@ class FormContainer extends Component {
     this.props.onSubmit(e)
   };
 
-  // componentDidMount() {
-  //   this.setState({
-  //     labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
-  //   });
-  // }
-
   render() {
-    const { username, platform, region } = this.props;
+    const { username, platform, region, classes } = this.props;
     console.log('region -->', region)
     
     return (
@@ -43,10 +64,11 @@ class FormContainer extends Component {
 
         {/* <form className={styles.container} id="username-form" onSubmit={this.handleSubmit}> */}
         
-        <form className={styles.container} autoComplete="off">
-        <FormControl variant="outlined">
+        <form className={classes.container} autoComplete="off">
+        <FormControl variant="outlined" className={classes.root} >
 
         <TextField
+          className={classes.textField}
           id="username"
           label="username"
           value={username}
@@ -66,7 +88,6 @@ class FormContainer extends Component {
               />
             }
             >
-            <MenuItem value=""><em>None</em></MenuItem>
             <MenuItem value={'steam'}>PC</MenuItem>
             <MenuItem value={'xbox'}>XBOX</MenuItem>
 
@@ -75,18 +96,14 @@ class FormContainer extends Component {
           <Select
             value={region}
             onChange={this.handleChange}
-            id="region"
             input={
               <OutlinedInput
               labelWidth={0}
+              name="region"
               value={region}
-              id="region"
               />
             }
             >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={'NA'}>NA</MenuItem>
             <MenuItem value={'EU'}>EU</MenuItem>
             <MenuItem value={'AS'}>AS</MenuItem>
@@ -101,11 +118,8 @@ class FormContainer extends Component {
           </Select>
 
           <Button 
-            style={
-              {border: "1px solid #d1d1d1",
-              marginLeft: "5px"
-              
-            }} type="submit" onClick={this.handleSubmit} >
+            className={classes.btn}
+            type="submit" onClick={this.handleSubmit} >
               Submit 
               </Button>
 
@@ -160,4 +174,4 @@ class FormContainer extends Component {
   }
 };
 
-export default FormContainer;
+export default withStyles(styles)(FormContainer);
