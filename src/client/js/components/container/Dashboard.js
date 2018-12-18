@@ -15,8 +15,6 @@ class Dashboard extends Component {
   render() {
 
     const { selectedStats } = this.props;
-    console.log('Dashboard Stats:  ==> ', selectedStats);
-    const statCats = Object.keys(selectedStats);
 
     return (
       <div className={styles.featureStats} >
@@ -32,18 +30,6 @@ class Dashboard extends Component {
           losses={selectedStats['losses']}
           top10s={selectedStats['top10s']}
         />
-
-
-        {/* {statCats.map( key => {
-          const stat = selectedStats[key]
-          
-          return (
-            <div key={key} className={styles.statBox}>
-              <h3 className={styles.h1}> {stat}</h3>
-              <p>{key}</p>
-            </div>
-          );
-        })} */}
       </div>
     );
 };

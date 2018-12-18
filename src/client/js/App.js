@@ -69,14 +69,16 @@ class App extends Component {
   };
 
   render() {
-    const { lifetimeStats, tpp, gameMode } = this.state;
+    const { lifetimeStats, tpp, gameMode, platform, region } = this.state;
 
     return ( 
       <div >
-        <FormContainer 
-          onChange={this.handleChange}
-          onSubmit={this.handleSubmit}
-        / >
+          <FormContainer 
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+            platform={platform}
+            region={region}
+            / >
       <div >
         <StatsContainer 
           onChange={this.handleChange}
@@ -84,7 +86,7 @@ class App extends Component {
           lifetimeStats={lifetimeStats}
           tpp={tpp}
           gameMode={gameMode}
-        / >
+          / >
       </div> 
       </div>
     )

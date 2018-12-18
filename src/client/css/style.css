@@ -1,18 +1,25 @@
 
-.body {
+body {
   display: flex;
   flex-direction: column;
   margin: 0px 0px;;
   justify-content: center;
-  background: lightblue;
+  /* background: lightblue; */
+  font-family: roboto;
+}
+
+.select {
+  background: red;
+  padding: 200px;
 }
 
 .container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   margin: 0;
-  padding: 20px;
-  background: gold;
+  /* padding: 20px; */
+  /* background: gold; */
 }
 
 .sContainer {
@@ -59,25 +66,36 @@
 }
 
 .formGroup {
+  appearance: none;
   display: flex;
   justify-content: center;
-  background: cyan;
+  height: 38px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #d1d1d1;
+  transition: border-color .15s linear;
+  border-radius: 4px;
+  box-shadow: none;
+  width: 34rem;
+  font: inherit;
+}
+
+input {
+  line-height: normal;
 }
 
 h1 {
   margin: 2px;
-  font-family: "Garamond"; 
 }
 
 p {
   margin: 2px;
-  font-family: "Futura";
 }
 
 .form {
   display: flex;
   padding: 5px;
-  background: lightgray;
+  background: clear;
 }
 
 .statBox {
@@ -108,3 +126,8 @@ p {
   align-items: center;
   border: 1px black solid;
 }
+
+.btn {
+  border: 1px solid black;
+}
+
