@@ -1,17 +1,55 @@
 import React, { Component } from "react";
-import Input from "../presentational/Input.js";
-import Region from "../presentational/Region.js";
-import styles from '../../../css/style.css';
+import Button from '@material-ui/core/Button';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    "flex-direction": "row",
+    "justify-content": "center",
+    margin: "2rem"
+  },
+  root: {
+    margin: 0,
+    border: 0,
+    display: "flex",
+    padding: 0,
+    position: "relative",
+    "min-width": 0,
+    "flex-direction": "row",
+    "vertical-align": "top",
+  },
+  textField: { 
+    width: 200,
+    margin: 0
+  },
+  btn: {
+    border: '1px solid #d1d1d1',
+    margin: 0
+  },
+  gameModeSelector: {
+    display: "flex",
+    "justify-content": "center"
+  }
+});
+
+
 
 class FormContainerMUI extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   handleChange = (e) => {
+    console.log('button press -->', e.target)
     this.props.onChange(e)
   };
 
@@ -20,59 +58,112 @@ class FormContainerMUI extends Component {
   };
 
   render() {
-    const { username, platform, region } = this.props;
-
+    const { username, platform, region, gameMode, tpp, lifetimeStats, classes } = this.props;
+    console.log('region -->', region)
+    
     return (
       <div >
 
-        <form className={styles.container} id="username-form" onSubmit={this.handleSubmit}>
-          <div className={styles.formGroup}>
-            <input
-              type="text"
-              placeholder="Username"
-              className={styles.form}
-              id="username"
-              value={username}
-              onChange={this.handleChange}
-              required
-            />
-          </div>
+        <form className={classes.container} autoComplete="off">
+        <FormControl variant="outlined" className={classes.root} >
 
-          <div className="platform-selector-div">
-              <select
+        <TextField
+          className={classes.textField}
+          placeholder="(case-sensitive)"
+          id="username"
+          label="username"
+          value={username}
+          onChange={this.handleChange}
+          margin="normal"
+          variant="outlined"
+          />
+         
+        <Select
+            value={platform}
+            onChange={this.handleChange}
+            input={
+              <OutlinedInput
+              labelWidth={0}
+              name="platform"
               value={platform}
-              onChange={this.handleChange}
-              id="platform"
-              >
-                <option value="steam">PC</option>
-                <option value="Xbox">Xbox</option>
-              </select>
-          </div>
+              />
+            }
+            >
+            <MenuItem value={'steam'}>PC</MenuItem>
+            <MenuItem value={'xbox'}>XBOX</MenuItem>
+          </Select>
 
-          <div className="region-selector-div">
-              <select
+          <Select
+            value={region}
+            onChange={this.handleChange}
+            input={
+              <OutlinedInput
+              labelWidth={0}
+              name="region"
               value={region}
-              onChange={this.handleChange}
-              id="region"
-              >
-                <option value="">Select Region:</option>
-                <option value="NA">NA</option>
-                <option value="EU">EU</option>
-                <option value="AS">AS</option>
-                <option value="JP">JP</option>
-                <option value="KRJP">KRJP</option>
-                <option value="RU">RU</option>
-                <option value="OC">OC</option>
-                <option value="SA">SA</option>
-                <option value="SEA">SEA</option>
-              </select>
-          </div>
+              />
+            }
+            >
+            <MenuItem value={'NA'}>NA</MenuItem>
+            <MenuItem value={'EU'}>EU</MenuItem>
+            <MenuItem value={'AS'}>AS</MenuItem>
+            <MenuItem value={'JP'}>JP</MenuItem>
+            <MenuItem value={'KRJP'}>KRJP</MenuItem>
+            <MenuItem value={'RU'}>RU</MenuItem>
+            <MenuItem value={'OC'}>OC</MenuItem>
+            <MenuItem value={'SA'}>SA</MenuItem>
+            <MenuItem value={'SEA'}>SEA</MenuItem>
+          </Select>
 
-        <button type="Submit" onClick={this.handleSubmit}> Submit </button>
+          <Button 
+            className={classes.btn}
+            type="submit" onClick={this.handleSubmit} >
+              Submit 
+              </Button>
+
+        </FormControl>
         </form>
+
+        <div className={classes.gameModeSelector}>
+          <Select
+              value={tpp}
+              onChange={this.handleChange}
+              input={
+                <OutlinedInput
+                disabled={lifetimeStats ? false : true}
+                labelWidth={0}
+                name="tpp"
+                value={tpp}
+                />
+              }
+              >
+
+              <MenuItem value={'fpp'}>FPP</MenuItem>
+              <MenuItem value={'tpp'}>TPP</MenuItem>
+            </Select>
+
+            <Select
+              value={gameMode}
+              onChange={this.handleChange}
+              input={
+                <OutlinedInput
+                labelWidth={0}
+                disabled={lifetimeStats ? false : true}
+                name="gameMode"
+                value={gameMode}
+                />
+              }
+              >
+              
+              <MenuItem value={'solo'}>SOLO</MenuItem>
+              <MenuItem value={'duo'}>DUO</MenuItem>
+              <MenuItem value={'squad'}>SQUAD</MenuItem>
+
+            </Select>
+          </div>
       </div>
     );
   }
 };
 
-export default FormContainerMUI;
+export default withStyles(styles)(FormContainerMUI);

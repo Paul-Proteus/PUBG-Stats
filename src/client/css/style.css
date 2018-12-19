@@ -1,12 +1,7 @@
 
-/* body {
-  display: flex;
-  flex-direction: column;
-  margin: 0px 0px;;
-  justify-content: center;
-  /* background: lightblue; 
-  font-family: roboto;
-} */
+body {
+  margin: 0px 0px;
+}
 
 /* .select {
   background: red;
@@ -21,6 +16,8 @@
   padding: 20px;
   background: gold;
 } */
+
+/*
 
 .formControl {
     margin: 0;
@@ -91,7 +88,7 @@
   font: inherit;
 }
 
-/* input {
+ input {
   line-height: normal;
 }
 
@@ -101,7 +98,7 @@ h1 {
 
 p {
   margin: 2px;
-} */
+} 
 
 .form {
   display: flex;
@@ -141,4 +138,6 @@ p {
 .btn {
   border: 1px solid black;
 }
+
+*/
 

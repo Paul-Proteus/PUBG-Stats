@@ -1,8 +1,18 @@
 import React, { Component } from "react";
-import FormContainer from "./components/container/FormContainer.js";
+import FormContainerMUI from "./components/container/FormContainerMUI.js";
 import axios from "axios";
 import StatsContainer from "./components/container/StatsContainer.js";
+import Navbar from "./components/container/Navbar.js";
+import { withStyles } from "@material-ui/styles";
 import styles from '../css/style.css';
+
+
+const stylos = theme => ({
+
+  formContainer: {
+    "margin-top": "1rem"
+  }
+});
 
 class App extends Component {
   constructor(props) {
@@ -77,16 +87,11 @@ class App extends Component {
 
   render() {
     const { lifetimeStats, tpp, gameMode, platform, region } = this.state;
+    const { classes } = this.props;
 
     return ( 
       <div >
-          <FormContainer 
-            onChange={this.handleChange}
-            onSubmit={this.handleSubmit}
-            platform={platform}
-            region={region}
-            / >
-      <div >
+        <Navbar />
         <StatsContainer 
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
@@ -94,10 +99,21 @@ class App extends Component {
           tpp={tpp}
           gameMode={gameMode}
           / >
+      <div >
+        <FormContainerMUI
+            className={classes.formContainer}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+            platform={platform}
+            lifetimeStats={lifetimeStats}
+            region={region}
+            tpp={tpp}
+            gameMode={gameMode}
+            / >
       </div> 
       </div>
     )
   };
 };
 
-export default App;
+export default withStyles(stylos)(App);

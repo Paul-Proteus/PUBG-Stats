@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-// import styles from '../../../css/style.css';
-
-// import Dashboard from './Dashboard.js';
 import DashboardMUI from './DashboardMUI.js';
-
-
+import initStats from '../../../../util/initStats.js';
+// import Dashboard from './Dashboard.js';
 
 class StatsContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
+      initStats: initStats,
       selectedStats: null
     }
 
@@ -55,44 +53,28 @@ class StatsContainer extends Component {
 
   render(){
 
-    const { selectedStats } = this.state;
+    const { selectedStats, initStats } = this.state;
     
     if (selectedStats) {
     return (
-      <div >
-        <select
-          id="tpp"
-          onChange={this.handleChange}
-        >
-        <option value="fpp">First Person</option>
-        <option value="tpp">Third Person</option>
-        </select>
-
-        <select
-          id="gameMode"
-          onChange={this.handleChange}
-        >
-          <option value="solo">Solo</option>
-          <option value="duo">Duo</option>
-          <option value="squad">Squad</option>
-        </select>
-
-        <div 
-        // className={styles.stats}
-        >
+        <div style={{"marginTop":"9rem"}} >
           <DashboardMUI
             selectedStats={selectedStats}
+          />
+        </div>
+    )
+  } else {
+    return (
+      <div>
+        <div style={{"marginTop":"9rem"}} 
+        >
+          <DashboardMUI
+            selectedStats={initStats}
           />
 
         </div>
       </div>
     )
-  } else {
-      return (
-        <h1>
-          "NO DATA"
-        </h1>
-      )
   };
   };
 
