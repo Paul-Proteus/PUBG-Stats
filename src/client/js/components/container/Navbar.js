@@ -3,10 +3,27 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/styles';
+// import Navigation from './Navigation.js';
+import { NavLink } from 'react-router-dom'
+
 
 const styles = theme => ({
-  nav: {
+  container: {
+    display: "flex",
+    "flex-direction": "row",
+    "justify-content": "space-between",
     "background": "gold"
+  },
+  about: {
+    "text-decoration": "none",
+    "text-transform": "uppercase",
+    "font-family": "Roboto",
+    // "font-size": "x-small"
+  },
+  stats: {
+    "text-decoration": "none",
+    "font-family": "Roboto",
+    // "font-size": "x-small"
   }
 });
 
@@ -19,14 +36,11 @@ class NavBar extends Component {
     const { classes } = this.props;
 
     return(
-        <div className={classes.nav}>
-        <AppBar className={classes.nav} position="static">
-            <Toolbar>
-                <Typography 
-                variant="title" 
-                >
-                PUBG STATS
-                </Typography>
+        <div >
+        <AppBar position="static">
+            <Toolbar className={classes.container}>
+            <NavLink to="/" className={classes.stats} > PUBG STATS </NavLink>
+            <NavLink to="/about" className={classes.about} > About </NavLink>
             </Toolbar>
         </AppBar>
         </div>

@@ -1,119 +1,38 @@
 import React, { Component } from "react";
-import FormContainerMUI from "./components/container/FormContainerMUI.js";
-import axios from "axios";
-import StatsContainer from "./components/container/StatsContainer.js";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { withStyles } from '@material-ui/styles';
 import Navbar from "./components/container/Navbar.js";
-import { withStyles } from "@material-ui/styles";
-import styles from '../css/style.css';
+import Home from './components/container/Home.js';
+import About from './components/container/About.js';
+import '../css/style.css';
 
-
-const stylos = theme => ({
-
-  formContainer: {
-    "margin-top": "1rem"
+const styles = theme => ({
+  nav: {
+    margin: "0px 0px"
   }
-});
+})
+
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      username: "",
-      platform: "steam",
-      region: "NA",
-      gameMode: "solo",
-      tpp: "fpp",
-      selectedStats: {},
-      lifetimeStats: null,
-        
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.getLifetimeStats = this.getLifetimeStats.bind(this);
-    this.setlifetimeStats = this.setlifetimeStats.bind(this);
-  };
-
-  /*********************************************************
-   * STAT TRANSFORMATION METHODS  
-   ********************************************************/
-
-  getLifetimeStats = async (username, platform) => {
-    const config = { 
-      data: {
-        username,
-        platform,
-      }
-    };
-    const res = await axios.post('/lifetimeStats', config )
-    const data = await res;
-    return data;
-  };
-
-  setlifetimeStats = (stats) => {
-    this.setState({
-      lifetimeStats: stats
-    });
-  };
-
-  /*********************************************************
-   * EVENT HANDLERS 
-   ********************************************************/
-
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    const username = this.state.username;
-    const platform = this.state.platform;
-    const region = this.state.region;
-
-    const lifetimeStats = await this.getLifetimeStats(username, platform);
-
-    this.setlifetimeStats(lifetimeStats.data.gameModeStats);
-  };
-
-  handleChange = (e) => {
-    
-    if (e.target.id) {
-      this.setState({ 
-        [e.target.id]: e.target.value
-      });
-    } else {
-      this.setState({ 
-        [e.target.name]: e.target.value
-      });
-    }
   };
 
   render() {
-    const { lifetimeStats, tpp, gameMode, platform, region } = this.state;
     const { classes } = this.props;
 
     return ( 
-      <div >
+      <BrowserRouter>
+      <div className={classes.nav}>
         <Navbar />
-        <StatsContainer 
-          onChange={this.handleChange}
-          onSubmit={this.handleSubmit}
-          lifetimeStats={lifetimeStats}
-          tpp={tpp}
-          gameMode={gameMode}
-          / >
-      <div >
-        <FormContainerMUI
-            className={classes.formContainer}
-            onChange={this.handleChange}
-            onSubmit={this.handleSubmit}
-            platform={platform}
-            lifetimeStats={lifetimeStats}
-            region={region}
-            tpp={tpp}
-            gameMode={gameMode}
-            / >
-      </div> 
+        <Switch>
+          <Route path="/" component={Home} exact/>
+          <Route path="/about" component={About} />
+        </Switch>
       </div>
+      </BrowserRouter>
     )
   };
 };
 
-export default withStyles(stylos)(App);
+export default withStyles(styles)(App);
