@@ -16,7 +16,6 @@ class About extends Component {
     super(props);
   };
 
-  
   render() {
     const { classes } = this.props;
     return (
